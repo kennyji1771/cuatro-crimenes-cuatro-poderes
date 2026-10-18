@@ -3,20 +3,36 @@
 <title>Cuatro Crímenes, Cuatro Poderes</title>
 <style>
 *{box-sizing:border-box}
-:root{--bg:#f4f7fc;--surface:#fff;--text:#212529;--text-sec:#6c757d;--border:#dee2e6;--nodo-bg:#fff;--nodo-hover:#f8faff;--editor-bg:#fafbfc;--level-0-bg:#fef5e7;--highlight:#ffeb3b;--highlight-text:#000}
-body.dark{--bg:#1e1e2e;--surface:#2a2a3c;--text:#e0e0e0;--text-sec:#a0a0b0;--border:#3a3a4c;--nodo-bg:#2a2a3c;--nodo-hover:#35355a;--editor-bg:#2a2a3c;--level-0-bg:#3d2e1c;--highlight:#b8860b;--highlight-text:#fff}
+:root{--bg:#f4f7fc;--surface:#fff;--text:#212529;--text-sec:#6c757d;--border:#dee2e6;
+--nodo-bg:#fff;--nodo-hover:#f8faff;--editor-bg:#fafbfc;--level-0-bg:#fef5e7;
+--highlight:#ffeb3b;--highlight-text:#000;--prisma-blue:#3498db;--prisma-violet:#9b59b6;
+--prisma-gold:#c9a227;--prisma-emerald:#2ecc71}
+body.dark{--bg:#0a1128;--surface:rgba(255,255,255,.06);--text:#e8ecf5;--text-sec:#a0aec9;
+--border:rgba(255,255,255,.12);--nodo-bg:rgba(255,255,255,.05);--nodo-hover:rgba(52,152,219,.14);
+--editor-bg:rgba(0,0,0,.28);--level-0-bg:rgba(201,162,39,.12);
+--highlight:#c9a227;--highlight-text:#fff}
 html,body{transition:background-color .25s,color .25s}
 body{font-family:'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);margin:0;padding:20px;min-height:100vh}
+.prisma-header{padding:22px;border-radius:14px;margin-bottom:18px;color:#fff;background-color:#0a1128;
+  background-image:linear-gradient(135deg,#0a1128,#1a2a5e,#3a1f5e);background-size:cover;background-position:center;
+  box-shadow:0 8px 28px rgba(0,0,0,.25)}
+.prisma-header h1{margin:0;font-size:1.55rem;color:#fff;background:linear-gradient(90deg,#fff,#c9a227,#3498db);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.brand-logo{max-height:64px;max-width:220px;display:block;object-fit:contain;margin-bottom:10px;border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,.4)}
+.prisma-intro{background:rgba(201,162,39,.1);border-left:4px solid var(--prisma-gold);padding:14px 18px;margin-bottom:22px;border-radius:8px;font-style:italic;line-height:1.65;color:var(--text)}
 h1{font-size:1.5rem;margin:0 0 16px}
 .toolbar{background:var(--surface);border-radius:12px;padding:10px;margin-bottom:12px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;box-shadow:0 1px 4px rgba(0,0,0,.06);border:1px solid var(--border)}
-.toolbar button{border:none;border-radius:8px;padding:8px 14px;cursor:pointer;font-size:14px;font-weight:bold;color:#fff;transition:filter .15s}
-.toolbar button:hover{filter:brightness(1.12)}
+.toolbar button{border:none;border-radius:8px;padding:8px 14px;cursor:pointer;font-size:14px;font-weight:700;color:#fff;transition:filter .15s,transform .15s}
+.toolbar button:hover{filter:brightness(1.12);transform:translateY(-1px)}
 .btn-play{background:#2ecc71}.btn-stop{background:#e74c3c}.btn-loop{background:#9b59b6}
 .btn-loop.active{background:#27ae60;box-shadow:inset 0 0 0 2px #fff}
 .btn-karaoke{background:#3498db}.btn-karaoke.active{background:#2980b9;box-shadow:inset 0 0 0 2px #fff}
 .btn-accion{background:#5d6d8a}.btn-accion.peligro{background:#e67e22}
+.btn-settings{background:#c9a227;color:#0a1128 !important;}
 .timer{font-family:monospace;font-weight:bold;font-size:15px;color:var(--text);background:var(--editor-bg);padding:6px 12px;border-radius:8px;border:1px solid var(--border);min-width:68px;text-align:center}
-select{padding:7px 12px;border-radius:8px;border:1px solid var(--border);font-size:13px;background:var(--surface);color:var(--text);cursor:pointer;max-width:220px}
+select{padding:7px 12px;border-radius:8px;border:1px solid var(--border);font-size:13px;background:var(--editor-bg);color:var(--text);cursor:pointer;max-width:220px}
+select option{background-color:#fff;color:#212529}
+body.dark select option{background-color:#1a1a2e;color:#e8ecf5}
 .status{font-size:12px;color:var(--text-sec);margin-left:auto;font-weight:600}
 .progress-badge{font-size:12px;color:var(--text-sec);padding:5px 11px;background:var(--editor-bg);border:1px solid var(--border);border-radius:20px;font-weight:600}
 .progress-badge.ok{color:#27ae60;border-color:#27ae60}
@@ -26,7 +42,7 @@ select{padding:7px 12px;border-radius:8px;border:1px solid var(--border);font-si
 .card-nodo{border-left:5px solid;padding:10px 16px;margin-bottom:6px;cursor:pointer;background:var(--nodo-bg);border-radius:10px;box-shadow:0 1px 4px rgba(0,0,0,.05);transition:transform .15s,background .15s}
 .card-nodo:hover{transform:translateX(4px);background:var(--nodo-hover)}
 .card-nodo.hl{background:var(--highlight);color:var(--highlight-text);font-weight:bold}
-.level-0{border-left-color:#e67e22;background:var(--level-0-bg)}
+.level-0{border-left-color:#c9a227;background:var(--level-0-bg)}
 .level-1{border-left-color:#3498db}
 .level-2{border-left-color:#2ecc71}
 .level-3{border-left-color:#9b59b6}
@@ -37,32 +53,55 @@ select{padding:7px 12px;border-radius:8px;border:1px solid var(--border);font-si
 .nodo-hijos{margin-left:24px;padding-left:14px;border-left:2px dashed var(--border);margin-top:6px}
 .collapsed{display:none}
 .icono-toggle{font-size:.85rem;opacity:.6;margin-left:10px;user-select:none;flex-shrink:0}
-#karaokeModal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:var(--surface);z-index:5000;flex-direction:column}
+#karaokeModal{display:none;position:fixed;inset:0;background:var(--bg);z-index:5000;flex-direction:column}
 #karaokeModal.show{display:flex}
-#karaokeHeader{background:linear-gradient(135deg,#1a2a4a,#2c3e6b);color:#fff;padding:10px 16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
-#karaokeHeader h3{margin:0;font-size:1.1rem;color:#fff}
+#karaokeHeader{background:linear-gradient(135deg,#0a1128,#1a2a5e,#3a1f5e);color:#fff;padding:10px 16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+#karaokeHeader h3{margin:0;font-size:1.05rem;color:#fff}
 #karaokeHeader .kc{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
-#karaokeHeader button{border:none;border-radius:8px;padding:6px 10px;cursor:pointer;font-size:14px;font-weight:bold;color:#fff}
-#karaokeBody{flex:1;overflow-y:auto;padding:30px 50px;font-size:1.7rem;line-height:2.1;color:var(--text);background:var(--editor-bg);position:relative;scroll-behavior:smooth}
+#karaokeHeader button{border:none;border-radius:8px;padding:6px 10px;cursor:pointer;font-size:13px;font-weight:700;color:#fff}
+#karaokeBody{flex:1;overflow-y:auto;padding:30px 50px;font-size:1.7rem;line-height:2.1;color:var(--text);background:var(--editor-bg);position:relative;scroll-behavior:smooth;overflow-wrap:break-word;word-break:break-word;white-space:normal;max-width:100%}
 .kw{padding:2px 4px;border-radius:4px;transition:background .15s,color .15s}
-.kw.hl{background:var(--highlight);color:var(--highlight-text);font-weight:bold;box-shadow:0 0 8px rgba(255,235,59,.6)}
-.knt{font-size:1.1rem;color:#3498db;font-weight:600;margin-bottom:14px;padding-bottom:6px;border-bottom:2px solid var(--border)}
+.kw.hl{background:var(--highlight);color:var(--highlight-text);font-weight:bold;box-shadow:0 0 10px rgba(201,162,39,.6)}
+.knt{font-size:1.05rem;color:#3498db;font-weight:700;margin-bottom:14px;padding-bottom:6px;border-bottom:2px solid var(--border);overflow-wrap:break-word;word-break:break-word}
 #capturasPanel{background:var(--editor-bg);border-top:2px solid #3498db;max-height:38vh;overflow-y:auto;display:flex;flex-direction:column}
-#capturasHeader{display:flex;justify-content:space-between;align-items:center;padding:6px 14px;background:var(--surface);border-bottom:1px solid var(--border);flex-wrap:wrap;gap:6px}
+#capturasHeader{display:flex;justify-content:space-between;align-items:center;padding:6px 14px;background:var(--bg);border-bottom:1px solid var(--border);flex-wrap:wrap;gap:6px}
 #capturasHeader span{font-weight:bold;font-size:13px;color:var(--text)}
 #capturasHeader button{border:none;border-radius:6px;padding:4px 9px;cursor:pointer;font-size:11px;font-weight:bold;background:#3498db;color:#fff}
 #capturasHeader button.danger{background:#e74c3c}
+#capturasHeader button.violet{background:#9b59b6}
 #capturasList{padding:6px 14px;display:flex;flex-direction:column;gap:6px}
-.cap-item{background:var(--surface);border-left:4px solid #e67e22;border-radius:6px;padding:6px 10px;font-size:12px;display:flex;justify-content:space-between;align-items:flex-start;gap:6px}
+.cap-item{background:var(--surface);border-left:4px solid #c9a227;border-radius:6px;padding:6px 10px;font-size:12px;display:flex;justify-content:space-between;align-items:flex-start;gap:6px}
 .cap-text{flex:1;line-height:1.4;font-family:monospace;font-size:11px;word-break:break-word}
 .cap-acc{display:flex;gap:3px}
 .cap-acc button{border:none;background:var(--editor-bg);border-radius:4px;padding:2px 6px;cursor:pointer;font-size:10px;color:var(--text)}
 .cap-vacio{color:var(--text-sec);text-align:center;padding:16px;font-style:italic;font-size:11px}
+
+/* Modales Export */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(5,8,20,.72);z-index:4000;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.modal-overlay.show{display:flex}
+.modal-content{background:var(--surface);border-radius:18px;max-width:560px;width:92%;padding:22px;box-shadow:0 24px 64px rgba(0,0,0,.5);border:1px solid var(--border);max-height:90vh;overflow-y:auto}
+.modal-content h5{margin:0;color:var(--text);font-weight:700}
+.modal-content label{font-size:.82rem;color:var(--text-sec);font-weight:700;text-transform:uppercase;letter-spacing:.3px;margin-bottom:4px;display:block}
+.close-x{border:none;background:none;font-size:1.5rem;cursor:pointer;color:var(--text-sec);line-height:1;padding:0 4px}
+.close-x:hover{color:#e74c3c}
+#sintesisModal { z-index: 6000 !important; }
+.sintesis-tabs{display:flex;gap:4px;margin-bottom:10px;border-bottom:1px solid var(--border)}
+.sintesis-tabs button{background:transparent;border:none;padding:10px 18px;cursor:pointer;color:var(--text-sec);border-bottom:2px solid transparent;font-weight:700;font-size:.88rem}
+.sintesis-tabs button.active{color:#3498db;border-bottom-color:#3498db}
+.sintesis-textarea{width:100%;min-height:340px;font-family:'Fira Code',monospace;font-size:12px;line-height:1.65;padding:14px;border:1px solid var(--border);border-radius:10px;background:var(--editor-bg);color:var(--text);resize:vertical}
+.btn-sumula-accion{background:linear-gradient(135deg,#c9a227,#9b59b6);color:#fff;border:none;border-radius:30px;padding:8px 20px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(155,89,182,.35);transition:.18s}
+.btn-sumula-accion:hover{transform:translateY(-1px);filter:brightness(1.1)}
+.btn-guia{display:inline-block;background:rgba(52,152,219,.15);color:#3498db;padding:8px 12px;border-radius:8px;text-decoration:none;font-weight:700;font-size:13px;margin-top:10px;border:1px dashed #3498db;width:100%;text-align:center}
+.btn-guia:hover{background:rgba(52,152,219,.3);color:#fff}
 @media(max-width:768px){body{padding:10px}.toolbar button{padding:6px 10px;font-size:13px}h1{font-size:1.2rem}#karaokeBody{padding:16px 20px;font-size:1.3rem}}
 </style>
 
 
-<h1>Cuatro Crímenes, Cuatro Poderes</h1>
+<div class="prisma-header" __prisma_banner_style__="">
+  
+  <h1>Cuatro Crímenes, Cuatro Poderes</h1>
+</div>
+
 
 <div class="toolbar">
   <button class="btn-play" id="btnPlay" title="Play/Pausa (Espacio)">▶</button>
@@ -71,6 +110,7 @@ select{padding:7px 12px;border-radius:8px;border:1px solid var(--border);font-si
   <button class="btn-karaoke" id="btnKaraoke" title="Lectura Asistida (K)">📖</button>
   <select id="voiceSelect" title="Voz"></select>
   <span class="timer" id="timerDisplay">00:00</span>
+  <button class="btn-settings" id="btnConfigExp" title="Configurar API Key">⚙️</button>
   <span class="status" id="status">Listo</span>
 </div>
 
@@ -97,19 +137,65 @@ select{padding:7px 12px;border-radius:8px;border:1px solid var(--border);font-si
 
 <div id="mapa"></div>
 
+<div class="modal-overlay" id="configExpModal">
+  <div class="modal-content">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+      <h5>⚙️ Configuración del Documento</h5>
+      <button id="closeConfigExp" class="close-x">×</button>
+    </div>
+    <div class="mb-3">
+      <label>API Key de Gemini AI (✨)</label>
+      <input type="password" class="form-control" id="geminiKeyExp" placeholder="Pega tu clave aquí (AIza...)" style="width:100%;padding:10px;border-radius:8px;border:1px solid var(--border);background:var(--editor-bg);color:var(--text);margin-bottom:8px;">
+      <a href="https://aistudio.google.com/app/apikey" target="_blank" class="btn-guia">🔗 Obtener mi API Key Gratis (Paso a Paso)</a>
+      <div style="font-size:11px;color:var(--text-sec);margin-top:8px;line-height:1.4;">
+        <b>¿Cómo obtenerla?</b><br>
+        1. Haz clic en el enlace azul de arriba.<br>
+        2. Inicia sesión con tu cuenta de Google.<br>
+        3. Haz clic en "Create API key" (Crear clave).<br>
+        4. Copia la clave generada y pégala aquí.
+      </div>
+    </div>
+    <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:14px;">
+      <button class="btn-accion" id="saveConfigExp" style="background:#3498db;padding:10px 20px;">Guardar Clave</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="sintesisModal">
+  <div class="modal-content" style="max-width:880px;width:94%;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+      <h5>✨ Síntesis Pedagógica con Gemini</h5>
+      <button id="closeSintesisModal" class="close-x">×</button>
+    </div>
+    <div class="sintesis-tabs">
+      <button id="tabTxt" class="active">📄 Texto Enriquecido</button>
+      <button id="tabSumula">📋 SÚMULA (Markdown)</button>
+    </div>
+    <textarea id="sintesisTxt" class="sintesis-textarea" readonly="" placeholder="Generando análisis profundo con Gemini..."></textarea>
+    <textarea id="sintesisSumula" class="sintesis-textarea" readonly="" style="display:none" placeholder="Generando SÚMULA..."></textarea>
+    <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:14px;flex-wrap:wrap;">
+      <button id="sintesisDownload" class="btn-sumula-accion">📥 Descargar .txt</button>
+      <button id="sintesisCopy" class="btn-sumula-accion">📋 Copiar al Portapapeles</button>
+      <button id="sintesisCancelar" class="btn-accion" style="padding:8px 16px;border-radius:30px;font-weight:700;color:#fff;border:none;">Cerrar</button>
+    </div>
+  </div>
+</div>
+
 <div id="karaokeModal">
   <div id="karaokeHeader">
     <h3>📖 Lectura Asistida</h3>
     <div class="kc">
+      <button style="background:#3498db" id="kFontDown">A−</button>
+      <button style="background:#3498db" id="kFontUp">A+</button>
       <button style="background:#2ecc71" id="kPlay">▶</button>
-      <button style="background:#f39c12" id="kPause">⏸</button>
+      <button style="background:#c9a227;color:#0a1128" id="kPause">⏸</button>
       <button style="background:#e74c3c" id="kStop">⏹</button>
       <button style="background:#7f8c8d" id="kPrev">⏮</button>
       <button style="background:#7f8c8d" id="kNext">⏭</button>
-      <button style="background:#f39c12" id="kRepeat">🔂1</button>
-      <button style="background:#8e44ad" id="kLoopInf">🔄∞</button>
-      <button style="background:#e67e22" id="kCapture">⭐ Capturar</button>
-      <button style="background:#8e44ad" id="kLoopCap">🎯 Bucle Cap.</button>
+      <button style="background:#c9a227;color:#0a1128" id="kRepeat">🔂1</button>
+      <button style="background:#9b59b6" id="kLoopInf">🔄∞</button>
+      <button style="background:#c9a227;color:#0a1128" id="kCapture">⭐ Capturar</button>
+      <button style="background:#9b59b6" id="kLoopCap">🎯 Bucle Cap.</button>
       <button style="background:#e74c3c" id="kClose">✕ Cerrar</button>
     </div>
   </div>
@@ -118,6 +204,7 @@ select{padding:7px 12px;border-radius:8px;border:1px solid var(--border);font-si
     <div id="capturasHeader">
       <span>📋 Capturas (<span id="capturasCount">0</span>)</span>
       <div style="display:flex;gap:5px;flex-wrap:wrap">
+        <button id="capSintesis" class="violet">✨ Sintetizar (IA)</button>
         <button id="capDownload">📥 .txt</button>
         <button id="capCopy">📋 Copiar</button>
         <button class="danger" id="capClear">🗑</button>
@@ -141,9 +228,10 @@ var karaokeFallbackTimer=null,lastBoundaryTime=0;
 var capturas=[];
 var wakeLock=null,silentCtx=null,silentOsc=null;
 var listaNodos=[],indiceActual=0,parsed=null;
+var fontSizeKaraoke=1.7;
 
 var slug=(document.title||'doc').replace(/[^a-z0-9]/gi,'_').substring(0,40);
-var K={theme:'nx_'+slug+'_th',sel:'nx_'+slug+'_sel',coll:'nx_'+slug+'_col',voice:'nx_'+slug+'_vo',rate:'nx_'+slug+'_ra',pitch:'nx_'+slug+'_pi',caps:'nx_'+slug+'_cp'};
+var K={theme:'nx_'+slug+'_th',sel:'nx_'+slug+'_sel',coll:'nx_'+slug+'_col',voice:'nx_'+slug+'_vo',rate:'nx_'+slug+'_ra',pitch:'nx_'+slug+'_pi',caps:'nx_'+slug+'_cp', gemini:'nexus_gemini_key'};
 function lsGet(k,d){try{var v=localStorage.getItem(k);return v===null?d:v;}catch(e){return d;}}
 function lsSet(k,v){try{localStorage.setItem(k,v);}catch(e){}}
 function loadSet(k){try{var v=JSON.parse(lsGet(k,'[]'));return new Set(Array.isArray(v)?v.map(String):[]);}catch(e){return new Set();}}
@@ -163,8 +251,9 @@ var btnPlay=$('btnPlay'),btnStop=$('btnStop'),btnLoop=$('btnLoop'),btnKaraoke=$(
     karaokeModal=$('karaokeModal'),karaokeBody=$('karaokeBody'),
     kPlay=$('kPlay'),kPause=$('kPause'),kStop=$('kStop'),kPrev=$('kPrev'),kNext=$('kNext'),
     kRepeat=$('kRepeat'),kLoopInf=$('kLoopInf'),kCapture=$('kCapture'),kLoopCap=$('kLoopCap'),kClose=$('kClose'),
+    kFontUp=$('kFontUp'),kFontDown=$('kFontDown'),
     capturasCount=$('capturasCount'),capturasList=$('capturasList'),
-    capDownload=$('capDownload'),capCopy=$('capCopy'),capClear=$('capClear');
+    capDownload=$('capDownload'),capCopy=$('capCopy'),capClear=$('capClear'), capSintesis=$('capSintesis');
 
 async function activarMantenimiento(){
   if('wakeLock' in navigator){try{wakeLock=await navigator.wakeLock.request('screen');}catch(e){}}
@@ -176,6 +265,22 @@ function liberarMantenimiento(){
   if(silentCtx){try{silentCtx.close();}catch(e){}silentCtx=null;}
 }
 document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible'&&estado==='leyendo')activarMantenimiento();});
+
+function limpiarTexto(t){
+  return t.replace(/^#{1,6}\s*/gm,'').replace(/^[-*]\s*/gm,'').replace(/[*_~`>#\(\)\[\]"";]/g,' ').replace(/\n+/g,'. ')
+    .replace(/\b([A-ZÁÉÍÓÚÑÜ]{5,})\b/g,function(m){return m.charAt(0)+m.slice(1).toLowerCase();})
+    .replace(/\s{2,}/g,' ').trim();
+}
+function dividirOracionesConOffsets(texto){
+  var regex=/[^.!?]+[.!?]+["'»)\]]*\s*|[^.!?]+$/g;
+  var partes=[],m;
+  while((m=regex.exec(texto))!==null){
+    if(m[0].trim().length>0) partes.push({texto:m[0],posicionInicio:m.index});
+    if(m.index===regex.lastIndex)regex.lastIndex++;
+  }
+  if(!partes.length)partes.push({texto:texto,posicionInicio:0});
+  return partes;
+}
 
 function parsear(texto){
   var lineas=texto.split(/\r?\n/),nodos=[],pila=[],id=1;
@@ -233,7 +338,7 @@ function render(searchTerm){
     var term=(searchTerm||'').toLowerCase().trim();
     mapaDiv.innerHTML='';
     if(!parsed.raices.length){
-      mapaDiv.innerHTML='<div style="text-align:center;color:var(--text-sec);padding:40px">Sin estructura Súmula detectada. Usa <code># Título</code>.</div>';
+      mapaDiv.innerHTML='<div style="text-align:center;color:var(--text-sec);padding:40px">Sin estructura detectada.</div>';
       updateProgress();return;
     }
     var cont=document.createElement('div');
@@ -279,10 +384,7 @@ function render(searchTerm){
     parsed.raices.forEach(function(r){var c=construir(r.id);if(c)cont.appendChild(c);});
     mapaDiv.appendChild(cont);
     updateProgress();
-  }catch(err){
-    console.error('render error:',err);
-    mapaDiv.innerHTML='<div style="color:#e74c3c;padding:20px">Error: '+err.message+'</div>';
-  }
+  }catch(err){console.error('render error:',err);mapaDiv.innerHTML='<div style="color:#e74c3c;padding:20px">Error: '+err.message+'</div>';}
 }
 
 function poblarVoces(){
@@ -307,28 +409,35 @@ function iniciarCrono(){if(cronoInterval)return;cronoInicioTramo=Date.now();cron
 function pausarCrono(){if(!cronoInterval)return;var t=Math.floor((Date.now()-cronoInicioTramo)/1000);cronoSegundos+=t;clearInterval(cronoInterval);cronoInterval=null;timerDisplay.textContent=fmt(cronoSegundos);}
 function resetCrono(){if(cronoInterval){clearInterval(cronoInterval);cronoInterval=null;}cronoSegundos=0;cronoInicioTramo=0;timerDisplay.textContent='00:00';}
 
-function limpiarTexto(t){return t.replace(/^#{1,6}\s*/gm,'').replace(/^[-*]\s*/gm,'').replace(/[*_~`>#\(\)\[\]"";]/g,' ').replace(/\n+/g,'. ').replace(/\s{2,}/g,' ').trim();}
 function limpiarSynth(){generacion++;try{if(utterance){utterance.onend=null;utterance.onerror=null;utterance.onboundary=null;}if(synth.paused)synth.resume();synth.cancel();}catch(e){}}
 function hablar(txt,cb){
-  limpiarSynth();var miGen=generacion;
-  setTimeout(function(){
+  var miGen=generacion;
+  var oraciones=dividirOracionesConOffsets(txt);
+  var idx=0;
+  function hablarSiguiente(){
     if(miGen!==generacion||estado!=='leyendo')return;
+    if(idx>=oraciones.length){cb();return;}
+    var item=oraciones[idx];
+    var offset=item.posicionInicio;
     try{
-      var u=new SpeechSynthesisUtterance(txt);u.lang='es-ES';
+      var u=new SpeechSynthesisUtterance(item.texto);
+      u.lang='es-ES';
       var voces=synth.getVoices().filter(function(x){return x.lang.indexOf('es')===0;});
       if(voces.length){var i=parseInt(voiceSelect.value);if(isNaN(i)||i<0||i>=voces.length)i=0;u.voice=voces[i];}
       u.rate=parseFloat(lsGet(K.rate,'0.9'))||0.9;
       u.pitch=parseFloat(lsGet(K.pitch,'1'))||1;
-      u.onboundary=function(ev){if(!karaokeActivo||miGen!==generacion)return;if(ev.name==='word'||ev.name==='sentence'){lastBoundaryTime=Date.now();resaltarPalabra(ev.charIndex);}};
-      u.onend=function(){if(miGen!==generacion||estado!=='leyendo')return;cb();};
-      u.onerror=function(e){var err=e.error||'';if(err==='interrupted'||err==='canceled')return;if(miGen!==generacion)return;if(estado==='leyendo')setTimeout(function(){if(estado==='leyendo'&&miGen===generacion)cb();},200);};
+      u.onboundary=function(ev){if(!karaokeActivo||miGen!==generacion)return;if(ev.name==='word'||ev.name==='sentence'){lastBoundaryTime=Date.now();resaltarPalabra(offset+ev.charIndex);}};
+      u.onend=function(){if(miGen!==generacion||estado!=='leyendo')return;idx++;setTimeout(hablarSiguiente,30);};
+      u.onerror=function(e){var err=e.error||'';if(err==='interrupted'||err==='canceled')return;if(miGen!==generacion)return;if(estado==='leyendo')setTimeout(function(){if(estado==='leyendo'&&miGen===generacion){idx++;hablarSiguiente();}},200);};
       utterance=u;
       lastBoundaryTime=Date.now();
       synth.speak(u);
       if(karaokeActivo)startKaraokeFallback();
-    }catch(e){if(miGen===generacion)cb();}
-  },200);
+    }catch(e){idx++;setTimeout(hablarSiguiente,100);}
+  }
+  setTimeout(hablarSiguiente,200);
 }
+
 function leerSig(){
   if(estado!=='leyendo')return;
   if(indiceActual>=listaNodos.length){
@@ -346,10 +455,9 @@ function leerSig(){
 }
 function detenerLectura(){
   estado='detenido';limpiarSynth();utterance=null;indiceActual=0;listaNodos=[];
-  btnPlay.textContent='▶';statusEl.textContent='Detenido';resetCrono();liberarMantenimiento();
-  stopKaraokeFallback();
-  bucleCapturas=false;kLoopCap.style.background='#8e44ad';
-  bucleInfinito=false;kLoopInf.style.background='#8e44ad';
+  btnPlay.textContent='▶';statusEl.textContent='Detenido';resetCrono();liberarMantenimiento();stopKaraokeFallback();
+  bucleCapturas=false;kLoopCap.style.background='#9b59b6';
+  bucleInfinito=false;kLoopInf.style.background='#9b59b6';
 }
 function togglePlayPause(){
   if(estado==='leyendo'){estado='pausado';limpiarSynth();stopKaraokeFallback();btnPlay.textContent='▶';statusEl.textContent='⏸ Pausado';pausarCrono();return;}
@@ -362,11 +470,8 @@ function togglePlayPause(){
   activarMantenimiento();setTimeout(leerSig,250);
 }
 
-/* ============ KARAOKE (SINCRONIZACIÓN CALIBRADA) ============ */
 function prepararKaraoke(txt){
-  karaokeBody.innerHTML='';
-  karaokeWords=[];karaokePositions=[];karaokeCurrentIdx=-1;
-  stopKaraokeFallback();
+  karaokeBody.innerHTML='';karaokeWords=[];karaokePositions=[];karaokeCurrentIdx=-1;stopKaraokeFallback();
   var limpio=limpiarTexto(txt);
   if(!limpio){karaokeBody.textContent='(Sin texto)';return;}
   var t=document.createElement('div');t.className='knt';t.textContent='▶ '+txt;karaokeBody.appendChild(t);
@@ -376,57 +481,36 @@ function prepararKaraoke(txt){
     var w=pals[i];if(!w){pos++;continue;}
     var s=document.createElement('span');s.textContent=w;s.className='kw';c.appendChild(s);
     karaokePositions.push({start:pos,end:pos+w.length,idx:i});
-    pos+=w.length+1;
-    c.appendChild(document.createTextNode(' '));
-    karaokeWords.push(s);
+    pos+=w.length+1;c.appendChild(document.createTextNode(' '));karaokeWords.push(s);
   }
-  karaokeBody.appendChild(c);
-  karaokeBody.scrollTop=0;
+  karaokeBody.appendChild(c);karaokeBody.scrollTop=0;karaokeBody.style.fontSize=fontSizeKaraoke+'rem';
 }
 function scrollKaraokeWord(el){
   if(!el||!karaokeBody)return;
   try{
-    var cRect=karaokeBody.getBoundingClientRect();
-    var eRect=el.getBoundingClientRect();
-    var relTop=(eRect.top-cRect.top)+karaokeBody.scrollTop;
-    var target=relTop-(cRect.height/2)+(eRect.height/2);
+    var cRect=karaokeBody.getBoundingClientRect();var eRect=el.getBoundingClientRect();
+    var relTop=(eRect.top-cRect.top)+karaokeBody.scrollTop;var target=relTop-(cRect.height/2)+(eRect.height/2);
     target=Math.max(0,target);
-    if(Math.abs(karaokeBody.scrollTop-target)>30){
-      karaokeBody.scrollTo({top:target,behavior:'smooth'});
-    }
+    if(Math.abs(karaokeBody.scrollTop-target)>30){karaokeBody.scrollTo({top:target,behavior:'smooth'});}
   }catch(e){}
 }
 function highlightWordByIndex(i){
-  if(i<0||i>=karaokeWords.length)return;
-  if(karaokeCurrentIdx===i)return;
+  if(i<0||i>=karaokeWords.length)return;if(karaokeCurrentIdx===i)return;
   if(karaokeCurrentIdx>=0&&karaokeWords[karaokeCurrentIdx])karaokeWords[karaokeCurrentIdx].classList.remove('hl');
-  karaokeWords[i].classList.add('hl');
-  karaokeCurrentIdx=i;
-  scrollKaraokeWord(karaokeWords[i]);
+  karaokeWords[i].classList.add('hl');karaokeCurrentIdx=i;scrollKaraokeWord(karaokeWords[i]);
 }
 function resaltarPalabra(ci){
   if(!karaokePositions.length)return;
   for(var i=0;i<karaokePositions.length;i++){
     var p=karaokePositions[i];
-    if(ci>=p.start&&ci<p.end){
-      if(i<karaokeCurrentIdx)return;
-      highlightWordByIndex(i);
-      return;
-    }
+    if(ci>=p.start&&ci<p.end){if(i<karaokeCurrentIdx)return;highlightWordByIndex(i);return;}
   }
 }
-/* Fallback calibrado por longitud de palabra. GRACE=1200ms sin boundaries
-   antes de activarse. Si el motor real envía boundaries, no interfiere. */
 function startKaraokeFallback(){
-  stopKaraokeFallback();
-  var rate=parseFloat(lsGet(K.rate,'0.9'))||0.9;
-  var GRACE=1200;
+  stopKaraokeFallback();var rate=parseFloat(lsGet(K.rate,'0.9'))||0.9;var GRACE=1200;
   function scheduleNext(){
     if(estado!=='leyendo'){stopKaraokeFallback();return;}
-    if(Date.now()-lastBoundaryTime<GRACE){
-      karaokeFallbackTimer=setTimeout(scheduleNext,400);
-      return;
-    }
+    if(Date.now()-lastBoundaryTime<GRACE){karaokeFallbackTimer=setTimeout(scheduleNext,400);return;}
     var nextIdx=(karaokeCurrentIdx>=0?karaokeCurrentIdx:-1)+1;
     if(nextIdx>=karaokeWords.length){stopKaraokeFallback();return;}
     highlightWordByIndex(nextIdx);
@@ -437,7 +521,6 @@ function startKaraokeFallback(){
   karaokeFallbackTimer=setTimeout(scheduleNext,GRACE+100);
 }
 function stopKaraokeFallback(){if(karaokeFallbackTimer){clearTimeout(karaokeFallbackTimer);karaokeFallbackTimer=null;}}
-/* ============ FIN KARAOKE ============ */
 
 function actualizarCapturasPanel(){
   capturasCount.textContent=capturas.length;
@@ -449,20 +532,30 @@ function actualizarCapturasPanel(){
     var a=document.createElement('div');a.className='cap-acc';
     var b1=document.createElement('button');b1.textContent='📋';b1.onclick=function(){navigator.clipboard.writeText(txt);};
     var b2=document.createElement('button');b2.textContent='🗑';b2.onclick=function(){capturas.splice(idx,1);lsSet(K.caps,JSON.stringify(capturas));actualizarCapturasPanel();};
-    a.appendChild(b1);a.appendChild(b2);
-    it.appendChild(t);it.appendChild(a);capturasList.appendChild(it);
+    a.appendChild(b1);a.appendChild(b2);it.appendChild(t);it.appendChild(a);capturasList.appendChild(it);
   });
 }
 var INIT_THEME='dark';
 function aplicarTema(){
   var saved=lsGet(K.theme,'')||INIT_THEME||'';
   var dark;
-  if(saved==='dark')dark=true;
-  else if(saved==='light')dark=false;
+  if(saved==='dark')dark=true;else if(saved==='light')dark=false;
   else dark=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;
-  document.body.classList.toggle('dark',dark);
-  btnTheme.textContent=dark?'☀️ Claro':'🌙 Oscuro';
+  document.body.classList.toggle('dark',dark);btnTheme.textContent=dark?'☀️ Claro':'🌙 Oscuro';
 }
+
+/* Configuración Export */
+var configExpModal=$('configExpModal');
+$('btnConfigExp').addEventListener('click',function(){
+  $('geminiKeyExp').value = lsGet(K.gemini,'');
+  configExpModal.classList.add('show');
+});
+$('closeConfigExp').addEventListener('click',function(){configExpModal.classList.remove('show');});
+$('saveConfigExp').addEventListener('click',function(){
+  var val = $('geminiKeyExp').value.trim();
+  lsSet(K.gemini, val);
+  configExpModal.classList.remove('show');
+});
 
 btnPlay.addEventListener('click',togglePlayPause);
 btnStop.addEventListener('click',detenerLectura);
@@ -471,8 +564,7 @@ btnTheme.addEventListener('click',function(){var dark=!document.body.classList.c
 btnExpandir.addEventListener('click',function(){
   collapsedIds.clear();saveSet(K.coll,collapsedIds);
   document.querySelectorAll('.nodo-hijos').forEach(function(c){c.classList.remove('collapsed');});
-  document.querySelectorAll('.icono-toggle').forEach(function(i){i.textContent='▼';});
-  collapseLevel.value='';
+  document.querySelectorAll('.icono-toggle').forEach(function(i){i.textContent='▼';});collapseLevel.value='';
 });
 btnColapsar.addEventListener('click',function(){
   document.querySelectorAll('.nodo-hijos').forEach(function(c){c.classList.add('collapsed');});
@@ -481,13 +573,11 @@ btnColapsar.addEventListener('click',function(){
   saveSet(K.coll,collapsedIds);collapseLevel.value='';
 });
 collapseLevel.addEventListener('change',function(){
-  var lvl=this.value;if(lvl==='')return;
-  var n=parseInt(lvl);collapsedIds.clear();
+  var lvl=this.value;if(lvl==='')return;var n=parseInt(lvl);collapsedIds.clear();
   if(parsed)parsed.nodos.forEach(function(node){var hijos=parsed.hijosMap.get(node.id)||[];if(hijos.length&&node.v>=n)collapsedIds.add(String(node.id));});
   saveSet(K.coll,collapsedIds);
   document.querySelectorAll('.card-nodo').forEach(function(card){
-    var id=parseInt(card.dataset.id);
-    var contH=card.querySelector(':scope > .nodo-hijos');
+    var id=parseInt(card.dataset.id);var contH=card.querySelector(':scope > .nodo-hijos');
     var ic=card.querySelector(':scope > .nodo-titulo > .icono-toggle');
     if(contH&&ic){var col=collapsedIds.has(String(id));contH.classList.toggle('collapsed',col);ic.textContent=col?'▶':'▼';}
   });
@@ -500,8 +590,7 @@ clearSearch.addEventListener('click',function(){searchInput.value='';render('');
 btnKaraoke.addEventListener('click',function(){
   karaokeActivo=!karaokeActivo;btnKaraoke.classList.toggle('active',karaokeActivo);
   if(karaokeActivo){
-    karaokeModal.classList.add('show');
-    var idx=indiceActual;
+    karaokeModal.classList.add('show');var idx=indiceActual;
     if(listaNodos.length>0&&idx<listaNodos.length)prepararKaraoke(listaNodos[idx]);
     else{var l=buildReadingList();if(l.length>0)prepararKaraoke(l[0]);else karaokeBody.innerHTML='<div style="text-align:center;color:var(--text-sec);padding:40px">Sin contenido</div>';}
     actualizarCapturasPanel();
@@ -514,35 +603,132 @@ kStop.addEventListener('click',detenerLectura);
 kPrev.addEventListener('click',function(){if(!listaNodos.length)listaNodos=buildReadingList();if(indiceActual>0){limpiarSynth();indiceActual--;estado='leyendo';prepararKaraoke(listaNodos[indiceActual]);btnPlay.textContent='⏸';if(!cronoInterval)iniciarCrono();activarMantenimiento();leerSig();}});
 kNext.addEventListener('click',function(){if(!listaNodos.length)listaNodos=buildReadingList();if(indiceActual<listaNodos.length-1){limpiarSynth();indiceActual++;estado='leyendo';prepararKaraoke(listaNodos[indiceActual]);btnPlay.textContent='⏸';if(!cronoInterval)iniciarCrono();activarMantenimiento();leerSig();}});
 kRepeat.addEventListener('click',function(){if(!listaNodos.length)listaNodos=buildReadingList();if(indiceActual>=listaNodos.length)indiceActual=0;limpiarSynth();estado='leyendo';prepararKaraoke(listaNodos[indiceActual]);btnPlay.textContent='⏸';if(!cronoInterval)iniciarCrono();activarMantenimiento();leerSig();});
-kLoopInf.addEventListener('click',function(){bucleInfinito=!bucleInfinito;kLoopInf.style.background=bucleInfinito?'#27ae60':'#8e44ad';statusEl.textContent=bucleInfinito?'🔄∞ INFINITO on':'🔄∞ off';});
+kLoopInf.addEventListener('click',function(){bucleInfinito=!bucleInfinito;kLoopInf.style.background=bucleInfinito?'#27ae60':'#9b59b6';statusEl.textContent=bucleInfinito?'🔄∞ INFINITO on':'🔄∞ off';});
 kCapture.addEventListener('click',function(){
   var sel=window.getSelection(),texto=sel.toString().trim();
   if(!texto){if(listaNodos.length>0&&indiceActual<listaNodos.length)texto=listaNodos[indiceActual];else if(selectedIds.size>0){var l=buildReadingList();texto=l[0]||'';}if(!texto){alert('Selecciona texto o inicia la lectura');return;}}
-  capturas.push(texto);lsSet(K.caps,JSON.stringify(capturas));actualizarCapturasPanel();
-  statusEl.textContent='⭐ Captura añadida ('+capturas.length+')';
+  capturas.push(texto);lsSet(K.caps,JSON.stringify(capturas));actualizarCapturasPanel();statusEl.textContent='⭐ Captura añadida ('+capturas.length+')';
   try{sel.removeAllRanges();}catch(e){}
 });
 capDownload.addEventListener('click',function(){
   if(!capturas.length){alert('No hay capturas');return;}
   var c='CAPTURAS — '+document.title+'\nFecha: '+new Date().toLocaleString('es-ES')+'\nTotal: '+capturas.length+'\n\n';
   capturas.forEach(function(t,i){c+='【 '+(i+1)+' 】\n\n'+t+'\n\n---\n\n';});
-  var b=new Blob([c],{type:'text/plain;charset=utf-8'});
-  var u=URL.createObjectURL(b),a=document.createElement('a');
-  a.href=u;a.download='capturas_'+Date.now()+'.txt';
-  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  var b=new Blob([c],{type:'text/plain;charset=utf-8'});var u=URL.createObjectURL(b),a=document.createElement('a');
+  a.href=u;a.download='capturas_'+Date.now()+'.txt';document.body.appendChild(a);a.click();document.body.removeChild(a);
   setTimeout(function(){URL.revokeObjectURL(u);},1000);
 });
 capCopy.addEventListener('click',function(){if(!capturas.length){alert('No hay capturas');return;}navigator.clipboard.writeText(capturas.join('\n\n---\n\n')).then(function(){statusEl.textContent='📋 Copiadas';});});
 capClear.addEventListener('click',function(){if(!capturas.length)return;if(confirm('¿Eliminar '+capturas.length+' capturas?')){capturas=[];lsSet(K.caps,'[]');actualizarCapturasPanel();}});
 kLoopCap.addEventListener('click',function(){
-  if(bucleCapturas){bucleCapturas=false;kLoopCap.style.background='#8e44ad';statusEl.textContent='🎯 Bucle cap. off';return;}
+  if(bucleCapturas){bucleCapturas=false;kLoopCap.style.background='#9b59b6';statusEl.textContent='🎯 Bucle cap. off';return;}
   if(!capturas.length){alert('No hay capturas');return;}
-  bucleCapturas=true;kLoopCap.style.background='#27ae60';
-  listaNodos=capturas.slice();indiceActual=0;estado='leyendo';
-  if(!cronoInterval)iniciarCrono();
-  btnPlay.textContent='⏸';activarMantenimiento();
-  statusEl.textContent='🎯 Bucle capturas ('+capturas.length+')';
+  bucleCapturas=true;kLoopCap.style.background='#27ae60';listaNodos=capturas.slice();indiceActual=0;estado='leyendo';
+  if(!cronoInterval)iniciarCrono();btnPlay.textContent='⏸';activarMantenimiento();statusEl.textContent='🎯 Bucle capturas ('+capturas.length+')';
   setTimeout(leerSig,200);
+});
+
+kFontUp.addEventListener('click',function(){fontSizeKaraoke=Math.min(4,fontSizeKaraoke+0.2);karaokeBody.style.fontSize=fontSizeKaraoke+'rem';});
+kFontDown.addEventListener('click',function(){fontSizeKaraoke=Math.max(0.8,fontSizeKaraoke-0.2);karaokeBody.style.fontSize=fontSizeKaraoke+'rem';});
+
+/* SÍNTESIS CON GEMINI EN EXPORT */
+async function generarSintesisCapturas(){
+  if(!capturas.length) return null;
+  
+  var geminiApiKey = lsGet(K.gemini, '');
+  if(!geminiApiKey) {
+    alert('⚠️ Para usar la IA, primero debes configurar tu API Key en el botón ⚙️ (arriba a la derecha).');
+    $('btnConfigExp').click();
+    return null;
+  }
+
+  var titulo = (document.title||'Documento').replace(/^▶\s*/,'').trim();
+  var capturasTexto = capturas.map((c, i) => `[Captura ${i+1}]: "${c}"`).join('\n\n');
+  
+  var prompt = `Actúa como un experto pedagogo, teólogo y analista de textos. Tu tarea es realizar una síntesis profunda y correlativa de los siguientes fragmentos extraídos del documento titulado "${titulo}".\n\n` +
+  `Instrucciones:\n` +
+  `1. NO te limites a enumerar o copiar. Debes hilar un argumento lógico que conecte las ideas centrales de todas las capturas.\n` +
+  `2. Contextualiza el contenido. Si el texto habla de justicia, poder o enseñanzas, haz referencias cruzadas con conceptos filosóficos, teológicos o pedagógicos más amplios.\n` +
+  `3. Cita explícitamente el número de captura (ej. "como se ve en la Captura 2...") cuando uses sus ideas.\n` +
+  `4. Aclara en la conclusión que esta síntesis fue generada por Gemini AI.\n\n` +
+  `Aquí están las capturas:\n${capturasTexto}\n\n` +
+  `Devuelve el resultado EXACTAMENTE con este formato (sin añadir texto extra antes o después):\n` +
+  `[INICIO_TEXTO_ENRIQUECIDO]\n(Aquí redacta un análisis profundo, pedagógico y fluido, estructurado en párrafos con emojis contextuales)\n[FIN_TEXTO_ENRIQUECIDO]\n` +
+  `[INICIO_SUMULA]\n(Aquí redacta la SÚMULA en formato Markdown: # Título, ## Conceptos, - Ideas clave, usando la misma correlación lógica)\n[FIN_SUMULA]`;
+
+  try {
+    var url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent`;
+    var response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-goog-api-key': geminiApiKey
+      },
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: prompt }] }]
+      })
+    });
+
+    if (!response.ok) {
+      var errData = await response.json();
+      throw new Error(errData.error?.message || 'Error en la API de Gemini');
+    }
+
+    var data = await response.json();
+    var aiText = data.candidates[0].content.parts[0].text;
+
+    var txtMatch = aiText.match(/\[INICIO_TEXTO_ENRIQUECIDO\]([\s\S]*?)\[FIN_TEXTO_ENRIQUECIDO\]/);
+    var sumMatch = aiText.match(/\[INICIO_SUMULA\]([\s\S]*?)\[FIN_SUMULA\]/);
+
+    var finalTxt = txtMatch ? txtMatch[1].trim() : aiText;
+    var finalSum = sumMatch ? sumMatch[1].trim() : aiText;
+
+    return { txt: finalTxt, sumula: finalSum, titulo: titulo };
+    
+  } catch (error) {
+    console.error('Gemini Error:', error);
+    alert('❌ Error al conectar con Gemini AI: ' + error.message);
+    return null;
+  }
+}
+
+var sintesisModal=$('sintesisModal'),sintesisTxt=$('sintesisTxt'),sintesisSumula=$('sintesisSumula'),tabTxt=$('tabTxt'),tabSumula=$('tabSumula');
+capSintesis.addEventListener('click',async function(){
+  if(!capturas.length){alert('No hay capturas para sintetizar.');return;}
+  
+  sintesisTxt.value = '✨ Gemini AI está analizando las capturas y correlacionando conceptos... Por favor espera.';
+  sintesisSumula.value = '✨ Generando SÚMULA...';
+  tabTxt.classList.add('active');tabSumula.classList.remove('active');
+  sintesisTxt.style.display='block';sintesisSumula.style.display='none';
+  sintesisModal.classList.add('show');
+
+  var result = await generarSintesisCapturas();
+  
+  if (result) {
+    sintesisTxt.value = result.txt;
+    sintesisSumula.value = result.sumula;
+  } else {
+    sintesisTxt.value = '❌ No se pudo generar la síntesis. Revisa tu API Key en los ajustes.';
+  }
+});
+tabTxt.addEventListener('click',function(){tabTxt.classList.add('active');tabSumula.classList.remove('active');sintesisTxt.style.display='block';sintesisSumula.style.display='none';});
+tabSumula.addEventListener('click',function(){tabSumula.classList.add('active');tabTxt.classList.remove('active');sintesisSumula.style.display='block';sintesisTxt.style.display='none';});
+$('closeSintesisModal').addEventListener('click',function(){sintesisModal.classList.remove('show');});
+$('sintesisCancelar').addEventListener('click',function(){sintesisModal.classList.remove('show');});
+$('sintesisDownload').addEventListener('click',function(){
+  var contenido=sintesisTxt.style.display!=='none'?sintesisTxt.value:sintesisSumula.value;
+  if(!contenido){alert('Nada que descargar');return;}
+  var ext=sintesisTxt.style.display!=='none'?'txt':'md';
+  var blob=new Blob([contenido],{type:'text/plain;charset=utf-8'});var u=URL.createObjectURL(blob),a=document.createElement('a');
+  a.href=u;a.download='sintesis_gemini_'+Date.now()+'.'+ext;document.body.appendChild(a);a.click();document.body.removeChild(a);
+  setTimeout(function(){URL.revokeObjectURL(u);},1000);
+});
+$('sintesisCopy').addEventListener('click',function(){
+  var contenido=sintesisTxt.style.display!=='none'?sintesisTxt.value:sintesisSumula.value;
+  if(!contenido){alert('Nada que copiar');return;}
+  navigator.clipboard.writeText(contenido).then(function(){
+    var btn=$('sintesisCopy');var original=btn.textContent;btn.textContent='✅ ¡Copiado!';setTimeout(function(){btn.textContent=original;},1500);
+  });
 });
 
 document.addEventListener('keydown',function(e){
@@ -555,12 +741,7 @@ document.addEventListener('keydown',function(e){
   else if(e.key==='k'||e.key==='K'){btnKaraoke.click();}
   else if(e.key==='Escape'&&karaokeActivo){kClose.click();}
 });
-
-aplicarTema();
-render('');
-actualizarCapturasPanel();
-console.log('%c📖 '+document.title,'background:#3498db;color:#fff;padding:4px 8px;border-radius:4px;font-weight:bold');
-console.log('Atajos: Espacio=Play/Pausa · T=Tema · E=Expandir · C=Colapsar · K=Karaoke · Esc=Cerrar');
+aplicarTema();render('');actualizarCapturasPanel();
 })();
 </script>
 
